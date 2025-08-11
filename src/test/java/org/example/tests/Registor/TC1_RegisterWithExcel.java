@@ -18,9 +18,9 @@ import java.util.Arrays;
 
 import static org.example.drivers.DriverManager.getDriver;
 
-public class RegisterTestWithExcel  extends CommonToAllTest {
+public class TC1_RegisterWithExcel extends CommonToAllTest {
 
-        private static final Logger logger = LogManager.getLogger(RegisterTestWithExcel.class);
+        private static final Logger logger = LogManager.getLogger(TC1_RegisterWithExcel.class);
 
     @DataProvider(name = "registerData")
     public Object[][] registerDataProvider() throws IOException {

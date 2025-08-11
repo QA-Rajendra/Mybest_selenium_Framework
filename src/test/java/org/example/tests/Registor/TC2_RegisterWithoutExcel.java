@@ -1,4 +1,4 @@
-package org.example.tests;
+package org.example.tests.Registor;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,8 +15,8 @@ import java.util.Arrays;
 import static org.example.drivers.DriverManager.getDriver;
 
 
-public class RegisterTest extends CommonToAllTest {
-    private static final Logger logger = LogManager.getLogger(RegisterTest.class);
+public class TC2_RegisterWithoutExcel extends CommonToAllTest {
+    private static final Logger logger = LogManager.getLogger(TC2_RegisterWithoutExcel.class);
     @Test
     public void testRegisterForm() {
         logger.info("🚀 Starting Main");
