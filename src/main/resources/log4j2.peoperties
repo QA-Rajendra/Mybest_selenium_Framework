@@ -1,0 +1,11 @@
+status = error
+name = PropertiesConfig
+
+appender.console.type = Console
+appender.console.name = STDOUT
+appender.console.layout.type = PatternLayout
+appender.console.layout.pattern = %d{HH:MM:SS} %-5p %c{1}:%L - %m%n
+
+rootLogger.level = info
+rootLogger.appenderRefs = console
+rootLogger.appenderRef.console.ref = STDOUT
