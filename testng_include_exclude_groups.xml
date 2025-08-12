@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+  <!-- <suite name="GroupedTests">
+  <test name="ExcelTests">
+    <groups>
+      <run>
+        <include name="excel"/>
+      </run>
+   
+		<run>
+          <exclude name="noexcel"/>
+         
+      
+    </groups>
+    <classes>
+      <class name="org.example.tests.Register.TC1_RegisterWithExcel"/>
+      <class name="org.example.tests.Register.TC2_RegisterWithoutExcel"/>
+    </classes>
+  </test> </run> -->
+
+
+<suite name="GroupRun">
+  <test name="OnlySmokeTests">
+    <groups>
+      <run>
+        <include name="smoke"/>
+        <!-- exclude example: <exclude name="regression"/> -->
+      </run>
+    </groups>
+    <classes>
+      <class name="org.example.tests.Registor.TC2_Register_parametes"/>
+    </classes>
+  </test>
+</suite>

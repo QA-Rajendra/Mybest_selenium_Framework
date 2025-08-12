@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<!-- Root element for the suite -->
+<suite name="Suite">
+
+  <!-- One test block inside the suite, which can contain multiple classes -->
+  <test thread-count="5" name="Test">
+
+    <!-- List of test classes to run -->
+    <classes>
+      <!-- Class 1: Registration test without Excel -->
+      <class name="org.example.tests.Registor.TC2_RegisterWithoutExcel"/>
+      
+      <!-- Class 2: Registration test with Excel -->
+      <class name="org.example.tests.Registor.TC1_RegisterWithExcel"/>
+    </classes>
+
+  </test> <!-- Test -->
+
+</suite> <!-- Suite -->
