@@ -1,0 +1,87 @@
+// Package declaration - defines the location of the class in the project structure
+package org.example.tests.Registor;  // Note: "Registor" may be a typo, should be "Register"
+
+// Logger import for optional debugging or logging
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+// Utility class to read Excel files (likely based on Apache POI)
+import org.example.UtilsExcel.ExcelUtil;
+
+// Base class containing common setup/teardown logic (e.g., WebDriver init/close)
+import org.example.base.CommonToAllTest;
+
+// Page Object for interacting with the Register page UI elements
+import org.example.pages.RegisterPage;
+
+// Utility to read data from .properties configuration files
+import org.example.utils.PropertiesReader;
+
+// Selenium WebDriver import for browser interaction
+import org.openqa.selenium.WebDriver;
+
+// TestNG imports for data-driven testing
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+// Java utility imports
+import java.io.IOException;
+import java.util.Arrays;
+
+// Static import to directly call getDriver() from DriverManager
+import static org.example.drivers.DriverManager.getDriver;
+
+// Test class that performs data-driven testing for the registration form
+public class TC1_RegisterWithExcel extends CommonToAllTest {
+
+    // Logger instance for logging test execution details (currently unused)
+    private static final Logger logger = LogManager.getLogger(TC1_RegisterWithExcel.class);
+
+    // DataProvider supplies data to the test from an Excel file
+    @DataProvider(name = "registerData")
+    public Object[][] registerDataProvider() throws IOException {
+        // Path to the Excel file (using project directory to resolve relative path)
+        String filePath = System.getProperty("user.dir") + "/src/main/resources/RegisterDataTestData.xlsx";
+        
+        // Reads the test data from the sheet named "RegisterData" using a utility method
+        return ExcelUtil.getTestData(filePath, "RegisterData");
+    }
+
+    // Test method that runs once per data row from the Excel file
+    @Test(dataProvider = "registerData")
+    public void testRegisterForm(
+            String firstName, String lastName, String address, String email, String phone,
+            String gender, String hobbies, String languages, String skills, String country,
+            String dobYear, String dobMonth, String dobDay, String password, String filePath) {
+
+        // Get WebDriver instance (likely initialized in CommonToAllTest)
+        WebDriver driver = getDriver();
+
+        // Navigate to the URL fetched from properties file (e.g., config.properties)
+        driver.get(PropertiesReader.readKey("url"));
+
+        // Initialize the Page Object Model for the Register page
+        RegisterPage registerPage = new RegisterPage(driver);
+
+        // Fill the registration form using the provided test data
+        // - Hobbies and Languages are split into a list from comma-separated strings
+        registerPage.fillForm(
+                firstName,
+                lastName,
+                address,
+                email,
+                phone,
+                gender,
+                Arrays.asList(hobbies.split(",")),
+                Arrays.asList(languages.split(",")),
+                skills,
+                country,
+                dobYear,
+                dobMonth,
+                dobDay,
+                password,
+                filePath // likely the path to a profile image or document to upload
+        );
+    }
+
+}
